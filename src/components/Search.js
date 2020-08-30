@@ -11,7 +11,9 @@ export function Search() {
         placeholder="Search your favorite city"
         name="search"
       />
-      <button>Search</button>
+      <button>
+        <i className="fa fa-search"></i>
+      </button>
     </form>
   );
 }
