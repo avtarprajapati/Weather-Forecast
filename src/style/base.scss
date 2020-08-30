@@ -10,7 +10,7 @@ html {
   font-size: 62.5%;
 }
 
-body {
-  background: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
-  // background-size: cover;
+.container {
+  background: $linear-background;
+  min-height: 100vh;
 }
