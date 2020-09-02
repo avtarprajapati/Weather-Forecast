@@ -4,51 +4,58 @@ import Search from "./components/Search";
 import View from "./components/View";
 import Card from "./components/Card";
 import FirstView from "./components/FirstView";
+import NotFound from "./components/NotFound";
 
 import "./style/include.scss";
 
 export class App extends Component {
   state = {
-    forecastData: {},
-    selectDay: {}
+    forecastData: { city: {}, shortData: [] },
+    selectDay: {},
+    notFound: false
   };
 
   onSearch = async (cityName) => {
-    this.setState({ cityName });
-    const KEY = "d6185cd347740b9d71798eccd5aa1802";
-    const weatherApi = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${KEY}`;
+    try {
+      this.setState({ cityName });
+      const KEY = "d6185cd347740b9d71798eccd5aa1802";
+      const weatherApi = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${KEY}`;
 
-    const {
-      data: { city, list }
-    } = await axios.get(weatherApi);
+      const {
+        data: { city, list }
+      } = await axios.get(weatherApi);
 
-    let currentTimeHours = new Date().getHours();
+      let currentTimeHours = new Date().getHours();
 
-    const dailyData = list.filter((data) =>
-      data.dt_txt.includes(currentTimeHours)
-        ? data.dt_txt.includes(currentTimeHours)
-        : data.dt_txt.includes(currentTimeHours + 1)
-        ? data.dt_txt.includes(currentTimeHours + 1)
-        : data.dt_txt.includes(currentTimeHours - 1)
-    );
+      const dailyData = list.filter((data) =>
+        data.dt_txt.includes(currentTimeHours)
+          ? data.dt_txt.includes(currentTimeHours)
+          : data.dt_txt.includes(currentTimeHours + 1)
+          ? data.dt_txt.includes(currentTimeHours + 1)
+          : data.dt_txt.includes(currentTimeHours - 1)
+      );
 
-    let shortData = dailyData.map((data) => {
-      return {
-        dateTime: data.dt,
-        temp: data.main.temp,
-        humidity: data.main.humidity,
-        wind: data.wind.speed,
-        description: data.weather[0].description,
-        icon: data.weather[0].icon
-      };
-    });
+      let shortData = dailyData.map((data) => {
+        return {
+          dateTime: data.dt,
+          temp: data.main.temp,
+          humidity: data.main.humidity,
+          wind: data.wind.speed,
+          description: data.weather[0].description,
+          icon: data.weather[0].icon
+        };
+      });
 
-    // console.log("Proper data through filter", city, shortData);
+      // console.log("Proper data through filter", city, shortData);
 
-    this.setState({
-      forecastData: { city, shortData },
-      selectDay: shortData[0]
-    });
+      this.setState({
+        forecastData: { city, shortData },
+        selectDay: shortData[0],
+        notFound: false
+      });
+    } catch (error) {
+      this.setState({ notFound: true });
+    }
   };
 
   onSelectDay = (day) => {
@@ -59,7 +66,10 @@ export class App extends Component {
     return (
       <div className="container">
         <Search cityName={this.onSearch} />
-        {this.state.forecastData.shortData ? (
+        {this.state.notFound && <NotFound />}
+        {this.state.forecastData.shortData.length === 0 && <FirstView />}
+        {!this.state.notFound &&
+        this.state.forecastData.shortData.length > 0 ? (
           <div className="show">
             <View
               selectDay={this.state.selectDay}
@@ -73,7 +83,7 @@ export class App extends Component {
             </div>
           </div>
         ) : (
-          <FirstView />
+          ""
         )}
       </div>
     );
