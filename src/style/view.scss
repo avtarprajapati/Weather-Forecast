@@ -1,0 +1,103 @@
+.view {
+  height: 50%;
+  width: 100%;
+  background: $blue;
+  color: $white;
+  padding: 0 12rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.2rem;
+  // font-size: 3rem;
+}
+
+.data {
+  text-align: center;
+  margin-bottom: -2rem;
+  width: 25rem;
+
+  .temp {
+    margin-bottom: 2rem;
+    p {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    span::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      border-radius: 50%;
+      border: 2px solid $white;
+    }
+
+    span {
+      position: relative;
+      margin-left: 0.5rem;
+      padding-left: 1rem;
+    }
+
+    label {
+      text-transform: capitalize;
+      display: inline-block;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: 0.2rem;
+      font-size: 2rem;
+    }
+  }
+  .info {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    font-size: 1.8rem;
+    div:first-child {
+      border-right: 2px solid $white;
+    }
+    & > div {
+      padding: 1.5rem;
+    }
+    label {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+  }
+}
+
+.cityname {
+  letter-spacing: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  border-bottom: 2px solid $white;
+  padding-bottom: 1rem;
+}
+
+@media only screen and (max-width: 1300px) {
+  .view {
+    padding: 0 5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .view {
+    flex-direction: column;
+    text-align: center;
+  }
+  .city {
+    order: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0.8rem;
+    img {
+      height: 8rem;
+      border-radius: 50%;
+    }
+  }
+  .data {
+    order: 1;
+    margin-bottom: 2rem;
+  }
+}

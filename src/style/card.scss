@@ -1,0 +1,62 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 2rem;
+  scroll-snap-align: center;
+  width: 200px;
+  height: 180px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 2rem;
+  margin: 0 2rem;
+
+  &:hover {
+    box-shadow: 0.5rem 1.5rem 2rem 0.2rem rgba(59, 43, 91, 0.5);
+  }
+
+  &__icon {
+    border-radius: 5rem;
+    height: 8rem;
+  }
+
+  &__temp {
+    span::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      border-radius: 50%;
+      border: 2px solid $black;
+    }
+
+    span {
+      position: relative;
+      margin-left: 0.5rem;
+      padding-left: 1rem;
+    }
+  }
+
+  &__desc {
+    text-transform: capitalize;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .card {
+    // width: 200px;
+    // height: 18rem;
+    margin-right: 2rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .card {
+    width: 300px;
+    height: 180px;
+    margin-right: 2rem;
+  }
+}

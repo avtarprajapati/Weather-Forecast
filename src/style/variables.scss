@@ -3,4 +3,8 @@ $black: #07020d;
 $blue: #016fb9;
 $orange: #ff6b6c;
 
-$linear-background: linear-gradient(to left top, #48c6ef 50%, #6f86d6 100%);
+$linear-background: linear-gradient(
+  to left top,
+  rgba(#48c6ef, 0.5),
+  rgba(#6f86d6, 0.5)
+);
