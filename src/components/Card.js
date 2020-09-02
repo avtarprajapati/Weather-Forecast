@@ -6,7 +6,7 @@ export class Card extends Component {
   };
 
   render() {
-    const { data, selectDay } = this.props;
+    const { data } = this.props;
     if (!data) return null;
     const imgUrl = `http://openweathermap.org/img/wn/${data.icon}@2x.png`;
 
