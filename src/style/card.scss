@@ -45,18 +45,12 @@
   }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1000px) {
   .card {
-    // width: 200px;
-    // height: 18rem;
-    margin-right: 2rem;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .card {
-    width: 300px;
-    height: 180px;
-    margin-right: 2rem;
+    width: 500px;
+    // height: 180px;
+    // margin-right: 2rem;
+    background-color: khaki;
+    margin: 0;
   }
 }

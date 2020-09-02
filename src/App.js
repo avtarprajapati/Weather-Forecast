@@ -56,7 +56,6 @@ export class App extends Component {
   };
 
   render() {
-    console.log(this.state.forecastData.shortData ? "get data" : "not data");
     return (
       <div className="container">
         <Search cityName={this.onSearch} />
