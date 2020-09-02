@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  text-align: center;
   font-size: 2rem;
   scroll-snap-align: center;
   min-width: 150px;
@@ -42,6 +43,7 @@
   &__desc {
     text-transform: capitalize;
     text-align: center;
+    margin-top: 0.5rem;
   }
 }
 
@@ -49,6 +51,19 @@
   .card {
     &:hover {
       box-shadow: none;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+    margin: 0.5rem;
+    &:hover {
+      background-color: rgba($black, 0.1);
     }
   }
 }

@@ -16,10 +16,10 @@ html {
   background-position: top;
   min-height: 100vh;
   padding: 2rem;
+  user-select: none;
 }
 
 .show {
-  // @include back-drop;
   height: 75vh;
   width: 80%;
   background: $white;
@@ -68,7 +68,6 @@ html {
   }
   .cardShow {
     width: 95%;
-    // justify-content: center;
   }
   .first-view {
     padding: 5rem;
@@ -81,5 +80,10 @@ html {
   }
   .show {
     width: 100%;
+  }
+
+  .cardShow {
+    flex-direction: column;
+    padding: 0;
   }
 }
