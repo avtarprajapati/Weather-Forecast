@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 export class Card extends Component {
   render() {
-    console.log(this.props.data);
     const { data, selectDay } = this.props;
     if (!data) return null;
     const imgUrl = `http://openweathermap.org/img/wn/${data.icon}@2x.png`;

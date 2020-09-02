@@ -5,8 +5,6 @@ export class View extends Component {
     const { selectDay, cityDetails } = this.props;
     if (!selectDay) return null;
     if (!cityDetails) return null;
-    console.log(cityDetails);
-    console.log(selectDay);
     const imgUrl = `http://openweathermap.org/img/wn/${selectDay.icon}@2x.png`;
 
     return (
