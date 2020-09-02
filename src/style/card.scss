@@ -5,7 +5,7 @@
   justify-content: space-evenly;
   font-size: 2rem;
   scroll-snap-align: center;
-  min-width: 180px;
+  min-width: 150px;
   height: 180px;
   transition: all 0.3s ease-in-out;
   border-radius: 2rem;
@@ -47,8 +47,6 @@
 
 @media (max-width: 1000px) {
   .card {
-    margin-right: 5rem;
-
     &:hover {
       box-shadow: none;
     }
