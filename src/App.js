@@ -19,8 +19,7 @@ export class App extends Component {
     try {
       this.setState({ cityName });
       const KEY = "d6185cd347740b9d71798eccd5aa1802";
-      const PROXY = "https://cors-anywhere.herokuapp.com/";
-      const weatherApi = `${PROXY}https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${KEY}`;
+      const weatherApi = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${KEY}`;
 
       const {
         data: { city, list }
