@@ -16,6 +16,8 @@ export class App extends Component {
   };
 
   onSearch = async (cityName) => {
+    const hours = [3, 6, 9, 12, 15, 18, 21, 24];
+
     try {
       this.setState({ cityName });
       const KEY = "d6185cd347740b9d71798eccd5aa1802";
@@ -27,13 +29,29 @@ export class App extends Component {
 
       let currentTimeHours = new Date().getHours();
 
-      const dailyData = list.filter((data) =>
-        data.dt_txt.includes(currentTimeHours)
-          ? data.dt_txt.includes(currentTimeHours)
-          : data.dt_txt.includes(currentTimeHours + 1)
-          ? data.dt_txt.includes(currentTimeHours + 1)
-          : data.dt_txt.includes(currentTimeHours - 1)
-      );
+      // const dailyData = list.filter((data) =>
+      //   data.dt_txt.includes(currentTimeHours)
+      //     ? data.dt_txt.includes(currentTimeHours)
+      //     : data.dt_txt.includes(currentTimeHours + 1)
+      //     ? data.dt_txt.includes(currentTimeHours + 1)
+      //     : data.dt_txt.includes(currentTimeHours - 1)
+      // );
+
+      const dailyData = list.filter((data) => {
+        // const hrs = data.dt_txt.split(" ")[1].split(":")[0];
+        // console.log(hrs);
+
+        if (data.dt_txt.includes(currentTimeHours + ":00:00")) {
+          // console.log(data.dt_txt);
+          return data.dt_txt.includes(currentTimeHours + ":00:00");
+        } else if (data.dt_txt.includes(currentTimeHours + 1 + ":00:00")) {
+          // console.log(data.dt_txt);
+          return data.dt_txt.includes(currentTimeHours + 1 + ":00:00");
+        } else {
+          // console.log(data.dt_txt);
+          return data.dt_txt.includes(currentTimeHours - 1 + ":00:00");
+        }
+      });
 
       let shortData = dailyData.map((data) => {
         return {
@@ -54,6 +72,7 @@ export class App extends Component {
         notFound: false
       });
     } catch (error) {
+      console.log(error);
       this.setState({ notFound: true });
     }
   };
@@ -63,21 +82,22 @@ export class App extends Component {
   };
 
   render() {
+    const {
+      forecastData: { shortData, city },
+      selectDay,
+      notFound
+    } = this.state;
     return (
       <div className="container">
         <Search cityName={this.onSearch} />
-        {this.state.notFound && <NotFound />}
-        {this.state.forecastData.shortData.length === 0 && <FirstView />}
-        {!this.state.notFound &&
-        this.state.forecastData.shortData.length > 0 ? (
+        {notFound && <NotFound />}
+        {shortData.length === 0 && !notFound && <FirstView />}
+        {!notFound && shortData.length > 0 ? (
           <div className="show">
-            <View
-              selectDay={this.state.selectDay}
-              cityDetails={this.state.forecastData.city}
-            />
+            <View selectDay={selectDay} cityDetails={city} />
             <div className="cardShow">
-              {this.state.forecastData.shortData &&
-                this.state.forecastData.shortData.map((day, i) => (
+              {shortData &&
+                shortData.map((day, i) => (
                   <Card data={day} key={i} selectDay={this.onSelectDay} />
                 ))}
             </div>
