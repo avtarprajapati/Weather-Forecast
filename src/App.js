@@ -16,8 +16,6 @@ export class App extends Component {
   };
 
   onSearch = async (cityName) => {
-    const hours = [3, 6, 9, 12, 15, 18, 21, 24];
-
     try {
       this.setState({ cityName });
       const KEY = "d6185cd347740b9d71798eccd5aa1802";
@@ -29,26 +27,12 @@ export class App extends Component {
 
       let currentTimeHours = new Date().getHours();
 
-      // const dailyData = list.filter((data) =>
-      //   data.dt_txt.includes(currentTimeHours)
-      //     ? data.dt_txt.includes(currentTimeHours)
-      //     : data.dt_txt.includes(currentTimeHours + 1)
-      //     ? data.dt_txt.includes(currentTimeHours + 1)
-      //     : data.dt_txt.includes(currentTimeHours - 1)
-      // );
-
       const dailyData = list.filter((data) => {
-        // const hrs = data.dt_txt.split(" ")[1].split(":")[0];
-        // console.log(hrs);
-
         if (data.dt_txt.includes(currentTimeHours + ":00:00")) {
-          // console.log(data.dt_txt);
           return data.dt_txt.includes(currentTimeHours + ":00:00");
         } else if (data.dt_txt.includes(currentTimeHours + 1 + ":00:00")) {
-          // console.log(data.dt_txt);
           return data.dt_txt.includes(currentTimeHours + 1 + ":00:00");
         } else {
-          // console.log(data.dt_txt);
           return data.dt_txt.includes(currentTimeHours - 1 + ":00:00");
         }
       });
