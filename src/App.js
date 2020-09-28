@@ -39,6 +39,7 @@ export class App extends Component {
 
       let shortData = dailyData.map((data) => {
         return {
+          day: new Date(data.dt * 1000).toDateString().split(" ")[0],
           dateTime: data.dt,
           temp: data.main.temp,
           humidity: data.main.humidity,

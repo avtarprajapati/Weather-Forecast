@@ -12,6 +12,7 @@ export class Card extends Component {
 
     return (
       <div className="card" onClick={() => this.onClickShow(data)}>
+        {data.day}
         <img src={imgUrl} alt={data.description} className="card__icon" />
         <div className="card__temp">
           {data.temp}
